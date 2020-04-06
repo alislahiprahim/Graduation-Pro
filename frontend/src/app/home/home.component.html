@@ -1,0 +1,16 @@
+<div class="container ">
+    <div class="row my-5" >
+        <div class="col-sm-4 " *ngFor="let d of DData">
+
+            <div class="card my-2" style="width: 18rem;">
+                <img class="card-img-top" style="width: 100%; height: 50%;" src="{{d.avatar}}" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Username: {{d.username}}</h5>
+                    <p class="card-text">Name: {{d.name}}</p>
+                    <a class="btn btn-primary" [routerLink]="['/dProfile', d._id]">Visit Doctor</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

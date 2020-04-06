@@ -1,0 +1,28 @@
+<div class="container text-center my- py-2">
+    <button mat-raised-button (click)='openTemp(DF_Modal)'>Fill Diagnosis Form</button>
+</div>
+
+
+<ng-template #DF_Modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" (click)='closeTemp(DF_Modal)' aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class=" mx-auto">
+        <div class="contaniner">
+            <h5 class="text-center">The Reason You Visit Us</h5>
+            <div class="row" *ngFor="let q of questions;index as i">
+                <div class="col-6-md">
+                    <mat-checkbox (change)='fillDiagnosis(q)'>{{q}}</mat-checkbox>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)='[closeTemp(DF_Modal),submitDF()]'>submit</button>
+        </div>
+    </div>
+</ng-template>

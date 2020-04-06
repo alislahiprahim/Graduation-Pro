@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row mx-5">
+
+        <div class="col-md-2">
+
+            <div class="container text-center my-2 py-2 mx-5">
+                <button mat-raised-button color="primary" [routerLink]="['/home']">Find Doctors </button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+
+            <div class="container text-center my-2 py-2">
+                <button mat-raised-button color="primary" [routerLink]="['/DsignUp']">signUP as Doctors </button>
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <div class="container text-center my-2 py-2">
+                <button mat-raised-button color="primary" [routerLink]="['/DsignIn']">login as Doctors </button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-2">
+
+            <div class="container text-center my-2 py-2">
+                <button mat-raised-button color="primary" [routerLink]="['/PsignUp']">SginUp as patient </button>
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <div class="container text-center my-2 py-2">
+                <button mat-raised-button color="primary" [routerLink]="['/PsignIn']">Login as patient </button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row  mx-5">
+
+        <div class="col-md-2">
+
+            <div class="container text-center my-2 mx-5 py-2">
+                <button mat-raised-button color="primary" (click)="logout()">Logout </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

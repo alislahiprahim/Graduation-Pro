@@ -1,0 +1,67 @@
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top mx-auto" style="width: 100%; height: 50%;" [src]=DData.avatar alt="Card image cap">
+    <h4 class="mt-0">Name : {{DData.name}}</h4>
+    <h5 class="mt-0">username : {{DData.username}}</h5>
+    <h5 class="mt-0">location : {{DData.location}}</h5>
+</div>
+
+<div style="text-align: center">
+    <h2> Upload your Avater</h2>
+    <form>
+        <div>
+            <input type="file" name="image" (change)="selectImage($event)" />
+        </div>
+        <br>
+        <div>
+            <button type="submit" (click)="onSubmit()">Upload</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <button class="btn btn-primary" (click)="getpatients()">show Patients</button>
+</div>
+
+
+<table class="table table-striped">
+    <tbody>
+
+        <tr *ngFor="let p of patientData; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+                {{ p.username }}
+            </td>
+            <td>
+                <button mat-raised-button color="primary" (click)="openLg(DF_content)"
+                    (click)="showPatientForm(p._id)">show patient Form</button>
+
+                <app-treatment-plan [patientID]="p._id"></app-treatment-plan>
+            </td>
+            <td>
+                <button type="button" mat-raised-button (click)='[toggle(),getChat(p._id)]'>Inbox</button>
+                <div *ngIf="show_chat">
+                    <app-chat [PId]='p._id' [d_chat]='d_chat'></app-chat>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #DF_content>
+
+    <div class=" mx-auto">
+        <table *ngFor="let p of P_dignosis_form ">
+            <h3>patient diagnosis form</h3>
+            <tr *ngFor="let d of p.diagnosis_form">
+
+                <td>
+                    {{d}}
+                </td>
+
+
+            </tr>
+        </table>
+    </div>
+
+
+</ng-template>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "graduation-pro-2e869": {
+      "hosting": {
+        "frontend2": [
+          "graduation-pro-2e869"
+        ]
+      }
+    }
+  }
+}

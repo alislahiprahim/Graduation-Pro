@@ -1,0 +1,33 @@
+<div class="container text-center my- py-2">
+    <button mat-raised-button (click)="[openModal(content),gettreatmentPlan()]"><i class="far fa-bell"></i></button>
+</div>
+
+<ng-template #content>
+    <div class="modal-bodyyy">
+        <div class="Treat-plan col-6">
+
+            <ng-container *ngIf="show; else elseTemplate">
+
+                <h3>{{D_Name}}</h3>
+                <img [src]=imageURL *ngIf="imageURL" style="width: 140px;height: 140px;border-radius: 50%;">
+                <h3>{{TP.result.from |json}}</h3>
+                <h3>{{TP.result.to |json}}</h3>
+                <h3>{{TP.result.planDetails}}</h3>
+                <h3>{{TP.result.PrimaryCost}}</h3>
+
+            </ng-container>
+            <ng-template #elseTemplate>
+
+            </ng-template>
+
+        </div>
+        <div *ngIf="show_chat">
+            <app-chat [DId]='DId' [patient_chat]='patient_chat'></app-chat>
+        </div>
+        <div class="modal-footerrr ">
+            <button type="button" mat-raised-button (click)='toggle()'>Inbox</button>
+            <button class="mx-1" type="button" mat-raised-button (click)="closeModal(content)">Close</button>
+        </div>
+
+    </div>
+</ng-template>
