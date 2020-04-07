@@ -32,6 +32,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatChipsModule } from '@angular/material/chips';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
@@ -43,6 +44,7 @@ import { FillDiagnosisComponent } from './fill-diagnosis/fill-diagnosis.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ChatComponent } from './chat/chat.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 firebase.initializeApp(environment.firebaseConfig);
 @NgModule({
@@ -65,6 +67,7 @@ firebase.initializeApp(environment.firebaseConfig);
     NavbarComponent,
     FooterComponent,
     ChatComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,7 @@ firebase.initializeApp(environment.firebaseConfig);
     BrowserAnimationsModule,
     NgbModule,
     MatStepperModule,
+    MatAutocompleteModule,
     MatChipsModule,
     MatCheckboxModule,
     MatInputModule,

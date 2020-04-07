@@ -1,6 +1,22 @@
+<div class="container">
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <input type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"
+                (keyup)='handleFilter($event)' [(ngModel)]="searchText">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredArray" [value]="option">
+                    <p>Username : {{option.username}}</p>
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+
+</div>
+
 <div class="container ">
-    <div class="row my-5" >
-        <div class="col-sm-4 " *ngFor="let d of DData">
+    <div class="row my-5">
+        <div class="col-sm-4 " *ngFor="let d of filteredArray">
 
             <div class="card my-2" style="width: 18rem;">
                 <img class="card-img-top" style="width: 100%; height: 50%;" src="{{d.avatar}}" alt="...">
