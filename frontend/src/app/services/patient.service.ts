@@ -23,6 +23,12 @@ export class patientService {
 
     }
 
+    patientsigninWithGoogle(data) {
+        return this.myHttpClient.post(this.backendApiUrl + 'patientsigninWithGoogle', data, { withCredentials: true })
+
+
+    }
+
     signout() {
         return this.myHttpClient.get(this.backendApiUrl + 'patientsignout', { withCredentials: true })
 
@@ -68,5 +74,9 @@ export class patientService {
 
         return this.myHttpClient.post(this.backendApiUrl + 'sendMessageToDoctor', data, { withCredentials: true })
 
+    }
+
+    getpatientData() {
+        return this.myHttpClient.get(this.backendApiUrl + 'getpatientProfile', { withCredentials: true })
     }
 }

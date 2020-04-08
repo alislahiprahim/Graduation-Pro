@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     patientModel = require('../models/patientModel'),
     doctorModel = require('../models/doctorModel'),
-    diagnosisForm = require('../models/DiagnosisForm'),
     lo = require('lodash')
 
 
@@ -49,6 +48,30 @@ function patientAPI(app) {
 
     });
 
+    app.post("/patientsigninWithGoogle", (req, resp) => {
+        const { username, email } = req.body
+        patientModel.findOne({ email: email }).exec((err, data) => {
+            if (data) {
+                debugger
+                req.session.user = data
+                resp.json({ message: 'loggedin', data })
+            } else {
+                let p1 = new patientModel({
+
+                    _id: mongoose.Types.ObjectId(),
+                    username,
+                    email
+                })
+                p1.save((err, data) => {
+                    debugger
+                    err ? resp.json({ message: 'error', err }) : resp.json({ message: 'success', data })
+
+                })
+            }
+
+        })
+    });
+
     app.get('/signout', async (req, resp) => {
 
         await req.session.destroy()
@@ -85,14 +108,9 @@ function patientAPI(app) {
 
     });
 
-    app.get('/getPImageProfile', (req, resp) => {
-        const { _id } = req.session.user
-
-        patientModel.findOne({ _id }).exec((err, data) => {
-            const avatar = data.avatar
-            err ? resp.json({ message: 'error' }) : resp.json({ message: 'success', avatar })
-
-        })
+    app.get('/getpatientProfile', (req, resp) => {
+        data = req.session.user
+        resp.json({ message: 'success', data })
     })
 
 

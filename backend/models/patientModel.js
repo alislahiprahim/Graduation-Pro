@@ -3,10 +3,10 @@ var mongoose = require('mongoose')
 let patientModel = new mongoose.model('Patient', {
     _id: mongoose.Schema.Types.ObjectId,
     name: String,
-    username: { type: String, unique: true },
+    username: String ,
     password: String,
     avatar: String,
-    email: String,
+    email:  String ,
     medical_month: Object,
     to_date: Object,
     from_date: Object,

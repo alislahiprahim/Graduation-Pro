@@ -12,6 +12,8 @@ export class PsignupComponent implements OnInit {
   username: any
   name: any
   password: any
+  email: any
+
 
   constructor(private mypatientService: patientService, private myRouter: Router) { }
 
@@ -20,11 +22,11 @@ export class PsignupComponent implements OnInit {
   }
 
   PatientSignUp() {
-    const { name, username, password } = this
+    const { name, username, password, email } = this
 
     if (name && username && password) {
 
-      this.mypatientService.signup({ name, username, password }).subscribe((resp: any) => {
+      this.mypatientService.signup({ name, username, password, email }).subscribe((resp: any) => {
         if (resp.message == 'success') {
           this.myRouter.navigate(['/PsignIn'])
 
@@ -39,4 +41,10 @@ export class PsignupComponent implements OnInit {
   }
 
 
+
 }
+
+
+
+
+

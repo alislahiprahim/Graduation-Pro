@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { patientService } from '../services/patient.service';
 import { NgbDate, NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 
 @Component({
   selector: 'app-navbar',
@@ -10,17 +12,31 @@ import { NgbDate, NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class NavbarComponent implements OnInit {
+
+  user: SocialUser;
+  loggedIn: boolean;
+
   hoveredDate: NgbDate | null = null;
   from_date: NgbDate;
   to_date: NgbDate | null = null;
+  imageURL: any = '';
+  PloggedIn: any
 
-  constructor(public myMatDialog: MatDialog, private MypatientService: patientService, private myNgbModal: NgbModal, calendar: NgbCalendar) {
+  constructor(private authService: AuthService, public myMatDialog: MatDialog, private MypatientService: patientService, private myNgbModal: NgbModal, calendar: NgbCalendar) {
     this.from_date = calendar.getToday();
     this.to_date = calendar.getNext(calendar.getToday(), 'd', 10);
   }
 
 
   ngOnInit() {
+    this.authService.authState.subscribe((user: any) => {
+      this.user = user;
+      this.imageURL = user.photoUrl
+      this.loggedIn = (user != null);
+    });
+    this.MypatientService.getpatientData().subscribe((user) => {
+      this.PloggedIn = (user != 'authentication failed')
+    })
   }
 
 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { doctorService } from '../services/doctor.service';
 import { patientService } from '../services/patient.service';
+import { AuthService } from 'angularx-social-login';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -12,10 +15,14 @@ export class WelcomeComponent implements OnInit {
   username: any
   password: any
   imageprofile: any
+  loggedIn: boolean;
 
-  constructor(private mydoctorService: doctorService, private MypatientService: patientService) { }
+  constructor(private mydoctorService: doctorService, private myRouter: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.loggedIn = (user != null);
+    });
 
   }
 
@@ -29,10 +36,19 @@ export class WelcomeComponent implements OnInit {
 
 
 
-  logout() {
+
+  signOut(): void {
+    if (this.loggedIn) {
+      this.authService.signOut();
+      location.reload()
+
+    }
     this.mydoctorService.signout().subscribe((resp: any) => {
-      window.alert(resp.message)
+
+      location.reload()
+      
     })
+
   }
 
 

@@ -39,7 +39,7 @@ export class TreatmentPlanComponent implements OnInit {
     if (from && to && PrimaryCost && planDetails && patientID) {
       debugger
       this.MydoctorService.sendtreatmentplan({ from, to, PrimaryCost, planDetails, patientID }).subscribe((resp: any) => {
-        console.log(resp.message)
+      
       })
     }
     else

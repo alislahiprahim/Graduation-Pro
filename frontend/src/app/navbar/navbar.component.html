@@ -12,19 +12,22 @@
                 <button mat-raised-button [routerLink]="['/home']">Home </button>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="loggedIn || PloggedIn">
                 <app-messages></app-messages>
             </li>
 
             <li>
 
-                <div class="nav-item my-2 mx-3">
+                <div class="nav-item my-2 mx-3" *ngIf="loggedIn || PloggedIn">
                     <button mat-raised-button (click)="openTemp(showCalender)">fill Arrival time</button>
                 </div>
 
             </li>
 
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <img src='{{imageURL}}' alt=" avatar" style="width: 100px;height: 100px; border-radius: 50%;">
+        </form>
     </div>
 </nav>
 

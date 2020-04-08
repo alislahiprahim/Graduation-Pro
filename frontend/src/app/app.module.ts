@@ -28,6 +28,8 @@ import { TourProfileComponent } from './tour-profile/tour-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatChipsModule } from '@angular/material/chips';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
@@ -46,7 +48,23 @@ import { FooterComponent } from './footer/footer.component';
 import { ChatComponent } from './chat/chat.component';
 import { FilterPipe } from './pipes/filter.pipe';
 
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('512326190070-4g011vl6fga3nc334l3cfdtqok2ug93t.apps.googleusercontent.com')
+  },
+
+]);
+
+export function provideConfig() {
+  return config;
+}
+
+
 firebase.initializeApp(environment.firebaseConfig);
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +110,7 @@ firebase.initializeApp(environment.firebaseConfig);
     BrowserAnimationsModule,
     NgbModule,
     MatStepperModule,
+    SocialLoginModule,
     MatAutocompleteModule,
     MatChipsModule,
     MatCheckboxModule,
@@ -112,7 +131,12 @@ firebase.initializeApp(environment.firebaseConfig);
 
   ],
 
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
 
   bootstrap: [AppComponent],
   entryComponents: [TreatmentPlanComponent]
