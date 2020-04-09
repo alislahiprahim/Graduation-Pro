@@ -7,13 +7,12 @@ function doctorAPI(app) {
 
     app.post("/doctorsignup", (req, resp) => {
 
-        const { name, username, password, location, questions, email } = req.body
+        const { name, username, password, location, email } = req.body
         const d1 = new doctorModel({
             _id: mongoose.Types.ObjectId(),
             name,
             username,
             password,
-            questions,
             location,
             email
         })
@@ -120,6 +119,16 @@ function doctorAPI(app) {
 
             })
         })
+    });
+
+    app.post("/addQuestions", async (req, resp) => {
+
+        const { _id } = req.session.user
+        const { Questions } = req.body
+        let doctorData = await doctorModel.findOne({ _id })
+        doctorData.questions = Questions
+        let data = await doctorData.save()
+        resp.json({ message: 'success', data })
     });
 
 

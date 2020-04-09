@@ -59,10 +59,13 @@ export class doctorService {
 
     }
     sendMessageToPatient(data) {
-        
+
         return this.myHttpClient.post(this.backendApiUrl + 'sendMessageToPatient', data, { withCredentials: true })
 
     }
 
+    addQuestions(data) {
+        return this.myHttpClient.post(this.backendApiUrl + 'addQuestions', data, { withCredentials: true })
+    }
 
 }

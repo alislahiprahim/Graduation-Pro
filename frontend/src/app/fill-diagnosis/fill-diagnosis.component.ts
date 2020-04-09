@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { patientService } from '../services/patient.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash'
+
 @Component({
   selector: 'app-fill-diagnosis',
   templateUrl: './fill-diagnosis.component.html',
@@ -13,8 +15,9 @@ export class FillDiagnosisComponent implements OnInit {
   diagnosisForm = []
   @Output() messageToEmit = new EventEmitter<any>();
   checked = false
+  text: any
 
-  constructor(private MypatientService: patientService, private myNgbModal: NgbModal) { }
+  constructor(private MypatientService: patientService, private myNgbModal: NgbModal, private Fb: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -43,6 +46,17 @@ export class FillDiagnosisComponent implements OnInit {
 
   submitDF() {
     this.messageToEmit.emit(this.diagnosisForm)
+
   }
+
+  addDiagnosis(event) {
+
+    let val = event.target.value
+    this.diagnosisForm.push(val)
+
+  }
+
+
+
 
 }

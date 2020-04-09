@@ -17,7 +17,7 @@ let patientModel = new mongoose.model('Patient', {
     diagnosis_form: [Object],
     doctor_chat: [Object],
     doctorID: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor' },
-    DiagnosisFormID: { type: mongoose.Schema.Types.ObjectId, ref: 'DiagnosisForm' },
+ 
 
 })
 

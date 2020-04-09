@@ -126,9 +126,14 @@ function patientAPI(app) {
         let doctorData = await doctorModel.findOne({ _id: DId })
         findID = lo.find(doctorData.patientID, (o) => { return o._id == _id })
         if (findID) {
-            resp.json({ message: "found" })
+
+            doctorData.P_diagnosis_form.push({ _id, diagnosis_form })
+            let output = await doctorData.save()
+            resp.json({ result: output })
+
         } else {
             doctorData.patientID.push(_id)
+            doctorData.P_diagnosis_form.push({ _id, diagnosis_form })
             let output = await doctorData.save()
             resp.json({ result: output })
         }

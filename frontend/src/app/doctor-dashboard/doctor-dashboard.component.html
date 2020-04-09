@@ -22,6 +22,15 @@
     <button class="btn btn-primary" (click)="getpatients()">show Patients</button>
 </div>
 
+<div class="container">
+    <button class="btn btn-primary" (click)="openLg(questions)">Edit Diagnosis Form</button>
+</div>
+
+
+<ng-template #questions>
+    <app-doc-questions></app-doc-questions>
+</ng-template>
+
 
 <table class="table table-striped">
     <tbody>
@@ -50,14 +59,13 @@
 <ng-template #DF_content>
 
     <div class=" mx-auto">
-        <table *ngFor="let p of P_dignosis_form ">
+        <table>
             <h3>patient diagnosis form</h3>
-            <tr *ngFor="let d of p.diagnosis_form">
+            <tr *ngFor="let d of patientForm">
 
                 <td>
                     {{d}}
                 </td>
-
 
             </tr>
         </table>

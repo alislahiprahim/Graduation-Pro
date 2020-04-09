@@ -24,6 +24,7 @@ export class DoctorDashboardComponent implements OnInit {
   doctor_chat: any;
   d_chat: any;
   show_chat = false
+  patientForm: any;
 
   constructor(public MyActivatedRoute: ActivatedRoute, private MydoctorService: doctorService, private myUploadService: UploadService, private modalService: NgbModal) {
 
@@ -36,12 +37,13 @@ export class DoctorDashboardComponent implements OnInit {
 
 
   getDoctorProfile() {
-    debugger
+
     let id = this.DId
     this.MydoctorService.getDoctoById({ id }).subscribe((resp: any) => {
+      
       this.DData = resp.data
-      this.d_chat = resp.data.patient_chat
-    
+      this.d_chat = this.DData.patient_chat
+      this.P_dignosis_form = this.DData.P_diagnosis_form
     })
   }
 
@@ -71,11 +73,13 @@ export class DoctorDashboardComponent implements OnInit {
   }
 
   showPatientForm(PId) {
-    let PD = _.find(this.patientData, (p) => {
+    
+    let PD = _.find(this.P_dignosis_form, (p) => {
       return p._id == PId
     })
-
-    this.P_dignosis_form = PD.diagnosis_form
+    if (PD) {
+      this.patientForm = PD.diagnosis_form
+    }
   }
 
 

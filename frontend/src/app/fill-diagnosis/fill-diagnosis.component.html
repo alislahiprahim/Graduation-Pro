@@ -11,12 +11,19 @@
         </button>
     </div>
     <div class=" mx-auto">
-        <div class="contaniner">
-            <h5 class="text-center">The Reason You Visit Us</h5>
-            <div class="row" *ngFor="let q of questions;index as i">
-                <div class="col-6-md">
-                    <mat-checkbox (change)='fillDiagnosis(q)'>{{q}}</mat-checkbox>
-                </div>
+        <div class="contaniner" *ngFor="let q of questions;let i = index">
+
+            <div>
+                <label>{{i+1}} : {{q.question}}</label>
+                <ng-container *ngIf="q.type == 'checkbox'; else elseTemplate">
+                    <input type='checkbox' value="{{q.question}}" (click)='addDiagnosis($event)'>
+                </ng-container>
+                <ng-template #elseTemplate>
+
+                    <input type='text' (change)='addDiagnosis($event)'>
+
+                </ng-template>
+
             </div>
 
         </div>
