@@ -1,6 +1,5 @@
-<div class="container text-center my- py-2">
-    <button mat-raised-button (click)="[openModal(content),gettreatmentPlan()]"><i
-            class="far fa-bell"></i></button>
+<div class="container text-center py-2 other" #stickyMenu [class.sticky]="sticky">
+    <a (click)="[openModal(content),gettreatmentPlan()]"><i class="far fa-bell"></i></a>
 </div>
 
 <ng-template #content>

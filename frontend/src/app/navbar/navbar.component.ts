@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { patientService } from '../services/patient.service';
 import { NgbDate, NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -8,14 +8,20 @@ import { SocialUser } from "angularx-social-login";
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.scss']
 })
 
 export class NavbarComponent implements OnInit {
 
+
+  @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
+
+  sticky: boolean = false;
+  elementPosition: any;
+  showFiller = false;
+
   user: SocialUser;
   loggedIn: boolean;
-
   hoveredDate: NgbDate | null = null;
   from_date: NgbDate;
   to_date: NgbDate | null = null;
@@ -27,6 +33,11 @@ export class NavbarComponent implements OnInit {
     this.to_date = calendar.getNext(calendar.getToday(), 'd', 10);
   }
 
+  ngAfterViewInit() {
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
+  }
+
+
 
   ngOnInit() {
     this.authService.authState.subscribe((user: any) => {
@@ -37,6 +48,14 @@ export class NavbarComponent implements OnInit {
     this.MypatientService.getpatientData().subscribe((user) => {
       this.PloggedIn = (user != 'authentication failed')
     })
+  }
+
+
+  @HostListener('window:scroll', ['$event'])
+  handleScroll() {
+    const windowScroll = window.pageYOffset;
+    if (windowScroll > this.elementPosition) { this.sticky = true; }
+    else { this.sticky = false; }
   }
 
 

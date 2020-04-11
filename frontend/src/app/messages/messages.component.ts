@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { patientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  styleUrls: ['./messages.component.scss']
 })
 
 
 export class MessagesComponent implements OnInit {
+
+  @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
+  sticky: boolean = false;
+  elementPosition: any;
+  showFiller = false;
 
   TP: any
   D_Name: string
@@ -22,10 +27,20 @@ export class MessagesComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private mypatientService: patientService) { }
 
-  ngOnInit() {
-    
+  ngAfterViewInit() {
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
+  ngOnInit() {
+  }
+
+
+  @HostListener('window:scroll', ['$event'])
+  handleScroll() {
+    const windowScroll = window.pageYOffset;
+    if (windowScroll > this.elementPosition) { this.sticky = true; }
+    else { this.sticky = false; }
+  }
 
   openModal(content) {
     this.modalService.open(content);
