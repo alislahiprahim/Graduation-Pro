@@ -181,16 +181,10 @@ footer a:hover {
 .searchbar {
   position: absolute;
   top: 40%;
-  left: 40%;
+  left: 10%;
 }
 
-@media screen and (max-width: 640) {
-  .search-bar {
-    position: absolute;
-    top: 40%;
-    left: 20%;
-  }
-}
+
 
 .example-form {
   min-width: 150px;
