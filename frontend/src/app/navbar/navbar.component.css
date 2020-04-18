@@ -1,0 +1,77 @@
+  .navbar-brand{
+    padding: 10px 60px; 
+    display: inline-block;
+    line-height: 50px;
+    float: left;
+    font-size: 20px;
+    font-family: 'Pacifico', cursive;
+    -webkit-transition-property: background-color, box-shadow, line-height, height;
+    transition-property: background-color, box-shadow, line-height, height;
+    -webkit-transition-timing-function: cubic-bezier(.78,.13,.15,.86);
+    transition-timing-function: cubic-bezier(.78,.13,.15,.86);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    
+  }
+  .navbar-brand a{
+    color:#337ab7;
+    text-decoration: none;
+  }
+  .navbar-brand span {
+    color:#d43b88;
+    font-weight: bold;
+  }
+
+  .navbar-nav li a:hover{
+border-bottom: #337ab7 solid 2px;
+border-top: #337ab7 solid 2px;
+font-weight: bold;
+
+}
+form button {
+    margin-left: 1rem;
+}
+
+.jumbotron{
+    background-color: transparent;
+    color: #337ab7;
+  }
+
+  .navbar-toggler{
+    position: relative;
+    top: 90%;
+    left: 90%;
+
+}
+
+
+.notification-btn:hover {
+  color: royalblue;
+  padding: 1px;
+  background-color: #ffffff;
+  border-radius: 500px;
+}
+
+.notification-content {
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  width: 350px;
+  height: 200px;
+  background-color: whitesmoke;
+  z-index: 300;
+}
+
+.notification-header {
+  padding: 10px;
+  color: #ffffff;
+  background-color: royalblue;
+}
+
+.notification-header .label {
+  display: inline-block;
+  width: 90%;
+  text-align: center;
+  font-weight: 500;
+}
+

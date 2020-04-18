@@ -1,50 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#"><span>D</span>oc<span>T</span>ourism</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-<nav id="nav" class="nav" #stickyMenu [class.sticky]="sticky">
-    <button class="menu"><em class="hamburger"></em></button>
-
-    <div class="brand">
-        <a [routerLink]="['/']">Brand</a>
-    </div>
-    <ul class="navbar">
-        <li>
-            <a class="other" [routerLink]="['/home']">Home</a>
-        </li>
-        <li *ngIf="loggedIn || PloggedIn">
-            <a class="other" (click)="openTemp(showCalender)">Fill Arrival Time</a>
-        </li>
-        <li>
-            <a class=" other" href="#services">Services</a>
-        </li>
-        <li *ngIf="loggedIn || PloggedIn">
-            <a class="other">
-                <app-messages></app-messages>
-            </a>
-        </li>
-
-     
-        <li class="sign" *ngIf="imageURL">
-            <img src='{{imageURL}}' alt=" avatar" style="width: 50px;height: 50px; border-radius: 50%;">
-        </li>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Doctors <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Services <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" *ngIf="loggedIn || PloggedIn">
+        <a class="nav-link" (click)="openTemp(showCalender)">Fill Arrival Time</a>
+      </li>
 
     </ul>
+
+    <ng-container *ngIf="!loggedIn; else elseTemplate">
+
+      <form class=" my-2 my-lg-0">
+        <button class="btn btn-primary" type="button">Login</button>
+        <button mat-raised-button color="primary">Sign Up</button>
+      </form>
+
+    </ng-container>
+    <ng-template #elseTemplate>
+      <app-messages></app-messages>
+      <img *ngIf="imageURL" src='{{imageURL}}' alt=" avatar"
+        style="padding: 10px; width: 70px;height: 70px; border-radius: 50%;">
+
+    </ng-template>
+
+  </div>
 </nav>
-<section style="height: 200px;margin-bottom: 30px;background-color: brown;"></section>
+<section style="height: 200px;margin-bottom: 30px;background-color: #d43b88;"></section>
+
+
 <ng-template #showCalender>
 
-    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
-        outsideDays="hidden">
-    </ngb-datepicker>
+  <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+  </ngb-datepicker>
 
-    <ng-template #t let-date let-focused="focused">
-        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-            (mouseleave)="hoveredDate = null">
-            {{ date.day }}
-        </span>
-    </ng-template>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="[patientArrivalDate(),closeTemp()]">send TP </button>
-    </div>
+  <ng-template #t let-date let-focused="focused">
+    <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+      [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+      (mouseleave)="hoveredDate = null">
+      {{ date.day }}
+    </span>
+  </ng-template>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="[patientArrivalDate(),closeTemp()]">send TP </button>
+  </div>
 
 </ng-template>

@@ -35,6 +35,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatChipsModule } from '@angular/material/chips';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ClickOutsideModule } from 'ng-click-outside';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
@@ -124,6 +125,7 @@ firebase.initializeApp(environment.firebaseConfig);
     MatRadioModule,
     MatButtonModule,
     MatFormFieldModule,
+    ClickOutsideModule,
     ReactiveFormsModule,
     MatExpansionModule,
     MatDialogModule,

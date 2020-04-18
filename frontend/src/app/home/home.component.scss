@@ -81,7 +81,7 @@ body {
     line-height: 1.5em;
   }
   .card-info .btn {
-    background-color: brown;
+    background-color: #d43b88;
     color: #eee;
     transition: all 0.3s;
   }
@@ -113,14 +113,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 60px;
-  background: brown;
+  background: #d43b88;
   line-height: 40px;
   padding: 10px;
   border-radius: 60px;
   color: #fff;
 }
 .search-input {
-  background: brown;
+  background: #d43b88;
   color: #fff;
   outline: none;
   border: none;
@@ -136,7 +136,7 @@ body {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background: brown;
+  background: #d43b88;
   padding: 12px;
   border-radius: 50%;
   float: right;
@@ -180,7 +180,7 @@ footer a:hover {
 }
 .searchbar {
   position: absolute;
-  top: 40%;
+  top: 53%;
   left: 10%;
 }
 

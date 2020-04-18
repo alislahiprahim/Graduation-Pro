@@ -11,11 +11,7 @@ import { patientService } from '../services/patient.service';
 
 export class MessagesComponent implements OnInit {
 
-  @ViewChild('stickyMenu', { static: false }) menuElement: ElementRef;
-  sticky: boolean = false;
-  elementPosition: any;
-  showFiller = false;
-
+  inbox = false;
   TP: any
   D_Name: string
   imageURL: string
@@ -27,28 +23,10 @@ export class MessagesComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private mypatientService: patientService) { }
 
-  ngAfterViewInit() {
-    this.elementPosition = this.menuElement.nativeElement.offsetTop;
-  }
-
   ngOnInit() {
   }
 
 
-  @HostListener('window:scroll', ['$event'])
-  handleScroll() {
-    const windowScroll = window.pageYOffset;
-    if (windowScroll > this.elementPosition) { this.sticky = true; }
-    else { this.sticky = false; }
-  }
-
-  openModal(content) {
-    this.modalService.open(content);
-  }
-
-  closeModal(content) {
-    this.modalService.dismissAll(content);
-  }
 
   gettreatmentPlan() {
 
@@ -72,9 +50,5 @@ export class MessagesComponent implements OnInit {
 
   }
 
-
-  toggle() {
-    this.show_chat = !this.show_chat;
-  }
 
 }
