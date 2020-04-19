@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light btn-info" >
 
   <div class="navbar-header">
-    <a class="navbar-brand" href="#"><span>D</span>oc<span>T</span>ourism</a>
+    <a class="navbar-brand" [routerLink]="['/']"><span>D</span>oc<span>T</span>ourism</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
       aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,9 +12,6 @@
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Doctors <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">Services <span class="sr-only">(current)</span></a>
@@ -31,18 +28,29 @@
 
     </ul>
 
-    <ng-container *ngIf="!loggedIn; else elseTemplate">
+    <ng-container *ngIf="loggedIn || !PloggedIn; else elseTemplate">
 
       <form class=" my-2 my-lg-0">
-        <button class="btn btn-primary" type="button">Login</button>
+        <button class="btn btn-primary" type="button">Login</button><br>
         <button mat-raised-button color="primary">Sign Up</button>
       </form>
 
     </ng-container>
     <ng-template #elseTemplate>
-      <app-messages></app-messages>
+      <app-messages class="mx-3"></app-messages>
+
       <img *ngIf="imageURL" src='{{imageURL}}' alt=" avatar"
-        style="padding: 10px; width: 70px;height: 70px; border-radius: 50%;">
+        style="padding: 10px; width: 70px;height: 70px; border-radius: 50%;" [matMenuTriggerFor]="menu">
+
+      <img *ngIf="imageURL2" src='{{imageURL2}}' alt=" avatar"
+        style="padding: 10px; width: 70px;height: 70px; border-radius: 50%;" [matMenuTriggerFor]="menu">
+
+      <mat-menu #menu="matMenu" class = 'my-menu'>
+        <a class="dropdown-item waves-effect waves-light" [routerLink]="[ '/PatientProfile']">My Profile</a>
+        <form class=" my-3 ">
+          <button mat-raised-button color="warn">Log Out</button>
+        </form>
+      </mat-menu>
 
     </ng-template>
 

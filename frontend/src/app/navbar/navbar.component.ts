@@ -19,11 +19,12 @@ export class NavbarComponent implements OnInit {
   from_date: NgbDate;
   to_date: NgbDate | null = null;
   imageURL: any = '';
+  imageURL2: any = '';
   PloggedIn: any
 
   doctorService
   onMessage = false;
-  showNotification: boolean;  
+  showNotification: boolean;
 
   constructor(private mydoctorservice: doctorService, private authService: AuthService, public myMatDialog: MatDialog, private MypatientService: patientService, private myNgbModal: NgbModal, calendar: NgbCalendar) {
     this.from_date = calendar.getToday();
@@ -36,8 +37,9 @@ export class NavbarComponent implements OnInit {
       this.imageURL = user.photoUrl
       this.loggedIn = (user != null);
     });
-    this.MypatientService.getpatientData().subscribe((user) => {
+    this.MypatientService.getpatientData().subscribe((user: any) => {
       this.PloggedIn = (user != 'authentication failed')
+      this.imageURL2 = user.data.avatar
     })
   }
   patientArrivalDate() {

@@ -113,14 +113,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 60px;
-  background: #d43b88;
+  background: #17a2b8;
   line-height: 40px;
   padding: 10px;
   border-radius: 60px;
   color: #fff;
 }
 .search-input {
-  background: #d43b88;
+  background: #17a2b8;
   color: #fff;
   outline: none;
   border: none;
@@ -136,11 +136,11 @@ body {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background: #d43b88;
+  background: #17a2b8;
   padding: 12px;
   border-radius: 50%;
   float: right;
-  color: #ff5722;
+  color: #d43b88;
   transition: 0.4s ease;
 }
 .search-box:hover > .search-input {

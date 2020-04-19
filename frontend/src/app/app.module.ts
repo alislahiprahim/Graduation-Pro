@@ -26,7 +26,7 @@ import { DsigninComponent } from './dsignin/dsignin.component';
 import { TourismComponent } from './tourism/tourism.component';
 import { TourProfileComponent } from './tour-profile/tour-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatBadgeModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
@@ -50,6 +50,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ChatComponent } from './chat/chat.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { DocQuestionsComponent } from './doc-questions/doc-questions.component';
+import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 
 
 let config = new AuthServiceConfig([
@@ -90,6 +91,7 @@ firebase.initializeApp(environment.firebaseConfig);
     ChatComponent,
     FilterPipe,
     DocQuestionsComponent,
+    PatientProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +108,7 @@ firebase.initializeApp(environment.firebaseConfig);
       { path: 'tourism', component: TourismComponent, },
       { path: 'addquestion', component: DocQuestionsComponent },
       { path: 'tourProfile', component: TourProfileComponent, },
+      { path: 'PatientProfile', component: PatientProfileComponent, },
 
       { path: '**', redirectTo: 'home' },
 
@@ -122,6 +125,7 @@ firebase.initializeApp(environment.firebaseConfig);
     MatInputModule,
     MatGridListModule,
     FormsModule,
+    MatBadgeModule,
     MatRadioModule,
     MatButtonModule,
     MatFormFieldModule,

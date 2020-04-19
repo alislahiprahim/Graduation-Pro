@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top mx-auto" style="width: 100%; height: 50%;" [src]=imageURL alt="Card image cap">
+    <h4 class="mt-0">Name : {{PData.name}}</h4>
+    <h5 class="mt-0">username : {{PData.username}}</h5>
+    <h5 class="mt-0">location : {{PData.location}}</h5>
+</div>
+
+<div style="text-align: center">
+    <h2> Upload your Avater</h2>
+    <form>
+        <div>
+            <input type="file" name="image" (change)="selectImage($event)" />
+        </div>
+        <br>
+        <div>
+            <button type="submit" (click)="onSubmit()">Upload</button>
+        </div>
+    </form>
+</div>

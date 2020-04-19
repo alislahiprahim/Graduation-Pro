@@ -25,7 +25,7 @@ function patientAPI(app) {
 
         p1.save((err, data) => {
 
-            err ? resp.json({ message: 'error' }) : resp.json({ message: 'success', data })
+            err ? resp.json({ message: 'error' }) : resp.json({ message: 'ssuccess', data })
 
         })
 
@@ -94,12 +94,14 @@ function patientAPI(app) {
     })
 
 
-
     app.post("/uploadPImage", (req, resp) => {
 
-        const { _id, avatar } = req.session.user
+        const { _id } = req.session.user
+        debugger
+        const { imageURL } = req.body
         patientModel.findOne({ _id }).exec((err, PData) => {
-            PData.avatar = avatar
+    
+            PData.avatar = imageURL
             PData.save((err, data) => {
                 err ? resp.json({ message: 'error' }) : resp.json({ message: 'success', data })
 
