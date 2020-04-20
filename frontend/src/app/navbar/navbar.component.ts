@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { patientService } from '../services/patient.service';
 import { NgbDate, NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from "angularx-social-login";
@@ -25,6 +25,8 @@ export class NavbarComponent implements OnInit {
   doctorService
   onMessage = false;
   showNotification: boolean;
+  id: any;
+  DimageURL: any;
 
   constructor(private mydoctorservice: doctorService, private authService: AuthService, public myMatDialog: MatDialog, private MypatientService: patientService, private myNgbModal: NgbModal, calendar: NgbCalendar) {
     this.from_date = calendar.getToday();
@@ -37,11 +39,22 @@ export class NavbarComponent implements OnInit {
       this.imageURL = user.photoUrl
       this.loggedIn = (user != null);
     });
-    this.MypatientService.getpatientData().subscribe((user: any) => {
+    this.MypatientService.getUSerProfile().subscribe((user: any) => {
+    
       this.PloggedIn = (user != 'authentication failed')
-      this.imageURL2 = user.data.avatar
+      
+      if (user.data.questions) {
+        this.DimageURL = user.data.avatar
+        this.id = user.data._id
+      } else {
+
+        this.imageURL2 = user.data.avatar
+
+      }
     })
+
   }
+
   patientArrivalDate() {
 
     const { from_date, to_date } = this

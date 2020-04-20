@@ -68,4 +68,10 @@ export class doctorService {
         return this.myHttpClient.post(this.backendApiUrl + 'addQuestions', data, { withCredentials: true })
     }
 
+    avtiveToggle(data) {
+
+        return this.myHttpClient.post(this.backendApiUrl + 'OnOffToggle', data, { withCredentials: true })
+
+    }
+  
 }

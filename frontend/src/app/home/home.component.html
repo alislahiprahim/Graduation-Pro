@@ -16,7 +16,8 @@
 
 <div class="container mx-auto" style='margin-top:140px'>
     <div class="cards" *ngFor="let d of filteredArray">
-        <div class="card-item">
+        
+        <div class="card-item" *ngIf="!d.activeChecked">
             <div class="card-image">
                 <img class="card-img-top" src="{{d.avatar}}" alt="...">
             </div>

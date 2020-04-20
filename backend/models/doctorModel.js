@@ -11,6 +11,7 @@ let doctorModel = new mongoose.model('Doctor', {
     questions: [],
     P_diagnosis_form: [Object],
     treatmentPlan: [Object],
+    activeChecked: Boolean,
     D_Pro_Images: [],
     patient_chat: [Object],
     patientID: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Patient' }],

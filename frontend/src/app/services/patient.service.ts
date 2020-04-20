@@ -76,7 +76,7 @@ export class patientService {
 
     }
 
-    getpatientData() {
-        return this.myHttpClient.get(this.backendApiUrl + 'getpatientProfile', { withCredentials: true })
+    getUSerProfile() {
+        return this.myHttpClient.get(this.backendApiUrl + 'getUserProfile', { withCredentials: true })
     }
 }

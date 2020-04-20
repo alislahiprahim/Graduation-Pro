@@ -39,7 +39,7 @@ export class PatientProfileComponent implements OnInit {
   }
 
   getPatientProfile() {
-    this.mypatientservice.getpatientData().subscribe((resp: any) => {
+    this.mypatientservice.getUSerProfile().subscribe((resp: any) => {
       console.log(resp.data)
       this.PData = resp.data
       this.imageURL = this.PData.avatar

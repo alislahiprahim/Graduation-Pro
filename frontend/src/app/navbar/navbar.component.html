@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light btn-info" >
+<nav class="navbar navbar-expand-lg navbar-light ">
 
   <div class="navbar-header">
     <a class="navbar-brand" [routerLink]="['/']"><span>D</span>oc<span>T</span>ourism</a>
@@ -30,8 +30,8 @@
 
     <ng-container *ngIf="loggedIn || !PloggedIn; else elseTemplate">
 
-      <form class=" my-2 my-lg-0">
-        <button class="btn btn-primary" type="button">Login</button><br>
+      <form class=" my-2">
+        <button mat-raised-button color="primary">Login</button>
         <button mat-raised-button color="primary">Sign Up</button>
       </form>
 
@@ -45,10 +45,16 @@
       <img *ngIf="imageURL2" src='{{imageURL2}}' alt=" avatar"
         style="padding: 10px; width: 70px;height: 70px; border-radius: 50%;" [matMenuTriggerFor]="menu">
 
-      <mat-menu #menu="matMenu" class = 'my-menu'>
-        <a class="dropdown-item waves-effect waves-light" [routerLink]="[ '/PatientProfile']">My Profile</a>
+      <img *ngIf="DimageURL" src='{{DimageURL}}' alt=" avatar"
+        style="padding: 10px; width: 70px;height: 70px; border-radius: 50%;" [matMenuTriggerFor]="menu">
+
+      <mat-menu #menu="matMenu" class='my-menu'>
+        <a class="dropdown-item waves-effect waves-light" *ngIf="imageURL||imageURL2"
+          [routerLink]="[ '/PatientProfile']">My Profile</a>
+        <a class="dropdown-item waves-effect waves-light" *ngIf="DimageURL" [routerLink]="[ '/dashboard',id]">Doctor
+          Profile </a>
         <form class=" my-3 ">
-          <button mat-raised-button color="warn">Log Out</button>
+          <button mat-raised-button color="warn" >Log Out</button>
         </form>
       </mat-menu>
 

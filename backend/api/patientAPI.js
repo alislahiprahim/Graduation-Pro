@@ -100,7 +100,7 @@ function patientAPI(app) {
         debugger
         const { imageURL } = req.body
         patientModel.findOne({ _id }).exec((err, PData) => {
-    
+
             PData.avatar = imageURL
             PData.save((err, data) => {
                 err ? resp.json({ message: 'error' }) : resp.json({ message: 'success', data })
@@ -109,11 +109,6 @@ function patientAPI(app) {
         })
 
     });
-
-    app.get('/getpatientProfile', (req, resp) => {
-        data = req.session.user
-        resp.json({ message: 'success', data })
-    })
 
 
     app.post("/fillDiagnosisForm", async (req, resp) => {
@@ -225,6 +220,11 @@ function patientAPI(app) {
         }
         resp.json({ result: PD })
     });
+
+    app.get('/getUserProfile', (req, resp) => {
+        data = req.session.user
+        resp.json({ message: 'success', data })
+    })
 
 
 }

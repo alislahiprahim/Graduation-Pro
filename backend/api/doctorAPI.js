@@ -131,7 +131,20 @@ function doctorAPI(app) {
         resp.json({ message: 'success', data })
     });
 
+    app.post("/OnOffToggle", (req, resp) => {
 
+        const { _id } = req.session.user
+        const { activeChecked } = req.body
+
+        doctorModel.findOne({ _id }).exec((err, Ddata) => {
+            Ddata.activeChecked = activeChecked
+            Ddata.save((err, data) => {
+
+                err ? resp.json({ message: 'error' }) : resp.json({ message: 'success', data })
+
+            })
+        })
+    });
 }
 
 module.exports = doctorAPI
