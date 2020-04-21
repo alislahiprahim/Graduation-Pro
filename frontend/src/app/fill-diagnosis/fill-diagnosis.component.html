@@ -1,35 +1,26 @@
-<div class="container text-center my- py-2">
-    <button mat-raised-button (click)='openTemp(DF_Modal)'>Fill Diagnosis Form</button>
-</div>
+<h2 mat-dialog-title>Fill Diagnosis Form</h2>
 
+<mat-dialog-content class="contaniner" style="width: 300px;">
 
-<ng-template #DF_Modal>
-    <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" (click)='closeTemp(DF_Modal)' aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="contaniner " *ngFor="let q of data.questions;let i = index">
+
+        <ng-container *ngIf="q.type == 'checkbox'; else elseTemplate">
+
+            <input type='checkbox' value="{{q.question}}" (click)='addDiagnosis($event)'>{{q.question}}
+
+        </ng-container>
+        <ng-template #elseTemplate>
+            <mat-form-field class="example-full-width">
+                <mat-label>{{q.question}}</mat-label>
+                <input matInput type='text' (change)='addDiagnosis($event)'>
+            </mat-form-field>
+        </ng-template>
+
     </div>
-    <div class=" mx-auto">
-        <div class="contaniner" *ngFor="let q of questions;let i = index">
 
-            <div>
-                <label>{{i+1}} : {{q.question}}</label>
-                <ng-container *ngIf="q.type == 'checkbox'; else elseTemplate">
-                    <input type='checkbox' value="{{q.question}}" (click)='addDiagnosis($event)'>
-                </ng-container>
-                <ng-template #elseTemplate>
+</mat-dialog-content>
 
-                    <input type='text' (change)='addDiagnosis($event)'>
-
-                </ng-template>
-
-            </div>
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-success" (click)='[closeTemp(DF_Modal),submitDF()]'>submit</button>
-        </div>
-    </div>
-</ng-template>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="sendForm()">Send Form</button>
+</mat-dialog-actions>

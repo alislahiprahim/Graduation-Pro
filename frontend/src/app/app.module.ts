@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms'
-import { MatCardModule ,MatSlideToggleModule } from '@angular/material';
+import { MatCardModule, MatSlideToggleModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './dsignup/dsignup.component';
@@ -151,6 +151,6 @@ firebase.initializeApp(environment.firebaseConfig);
   ],
 
   bootstrap: [AppComponent],
-  entryComponents: [TreatmentPlanComponent]
+  entryComponents: [TreatmentPlanComponent,FillDiagnosisComponent]
 })
 export class AppModule { }

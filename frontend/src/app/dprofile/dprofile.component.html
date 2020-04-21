@@ -1,10 +1,10 @@
-<div class="media">
+<div class="media mx-5 py-5">
     <img src="{{DData.avatar}}" style="width: 200px;height: 200px ;" alt="...">
     <div class="media-body">
         <h4 class="mt-0">Name : {{DData.name}}</h4>
         <h5 class="mt-0">username : {{DData.username}}</h5>
         <h5 class="mt-0">location : {{DData.location}}</h5>
-        <app-fill-diagnosis [questions]='questions' (messageToEmit)='receive_DF($event)'></app-fill-diagnosis>
-        <button class="btn btn-primary" (click)="sendForm()"> Send Diagnosis Form</button>
+        <button mat-raised-button color='primary' (click)="openDialog()">Open dialog</button>
+      
     </div>
 </div>

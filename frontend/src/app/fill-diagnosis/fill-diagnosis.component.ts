@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { patientService } from '../services/patient.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as _ from 'lodash'
+import { DialogData } from '../dprofile/dprofile.component';
 
 @Component({
   selector: 'app-fill-diagnosis',
@@ -11,52 +12,45 @@ import * as _ from 'lodash'
 })
 export class FillDiagnosisComponent implements OnInit {
 
-  @Input() questions: []
-  diagnosisForm = []
-  @Output() messageToEmit = new EventEmitter<any>();
+  diagnosis_form = []
   checked = false
   text: any
-
-  constructor(private MypatientService: patientService, private myNgbModal: NgbModal, private Fb: FormBuilder) { }
+  constructor(private mypatientService: patientService, private Fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
+    console.log(this.data)
   }
 
 
-
-
-  openTemp(DF_Modal) {
-    this.myNgbModal.open(DF_Modal)
-  }
-
-  closeTemp(DF_Modal) {
-    this.myNgbModal.dismissAll(DF_Modal)
-  }
 
   fillDiagnosis(qest) {
-    if (_.includes(this.diagnosisForm, qest)) {
+    if (_.includes(this.diagnosis_form, qest)) {
     } else {
 
-      this.diagnosisForm.push(qest)
-      console.log(this.diagnosisForm)
+      this.diagnosis_form.push(qest)
+      console.log(this.diagnosis_form)
 
     }
 
   }
 
-  submitDF() {
-    this.messageToEmit.emit(this.diagnosisForm)
-
-  }
-
   addDiagnosis(event) {
-
+    
     let val = event.target.value
-    this.diagnosisForm.push(val)
-
+    this.diagnosis_form.push(val)
+    console.log(this.diagnosis_form)
   }
 
+  sendForm() {
 
+    const { DId } = this.data
+    const { diagnosis_form } = this
+    this.mypatientService.fillDiagnosisForm({ diagnosis_form, DId }).subscribe((resp: any) => {
+
+      console.log(resp)
+    })
+
+  }
 
 
 }

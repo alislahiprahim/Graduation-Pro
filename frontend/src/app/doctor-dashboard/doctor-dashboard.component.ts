@@ -102,6 +102,7 @@ export class DoctorDashboardComponent implements OnInit {
 
   activeToggle() {
     const { activeChecked } = this
+    console.log(activeChecked)
     this.MydoctorService.avtiveToggle({ activeChecked }).subscribe((resp: any) => {
       console.log(resp.data)
     })
